@@ -1,0 +1,85 @@
+{
+  "app": "python3 app.py",
+  "watch": {
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "requirements*.txt",
+      "source.bat",
+      "**/__init__.py",
+      "python/__pycache__",
+      "tests"
+    ]
+  },
+  "context": {
+    "s3_context": {
+      "ct": {
+        "name": "cdk-iac-tool-qa-ct-events"
+      },
+      "output": {
+        "name": "cdk-iac-tool-qa-filter-data"
+      }
+    },
+    "ct_context": {
+      "ct": {
+        "name": "iac-tool-qa-resourca-iac-monitor"
+      }
+    },
+    "kms_context": {
+      "ct": {
+        "name": "iac-tool-qa-kms-key"
+      }
+    },
+
+    "lambda_context": {
+      "ct": {
+        "name": "iac-tool-qa-lambdaToProcessCTLogs",
+        "timeout": 60,
+        "memory_size": 128,
+        "ephemeral_storage_size": 512,
+        "relative_code_path": "../src/lambda_code",
+        "handler": "lambda_function.lambda_handler"
+      }
+    },
+    "glue_context": {
+      "ct": {
+        "name": "iactoolqaresourceiac",
+        "crawler_name": "iac-tool-qa-resource-iac-json-crawler"
+      }
+    },
+    "qs_context": {
+      "ct": {
+        "name": "operations-iac",
+        "ds_name": "operations-iac-ds",
+        "db_name": "iactoolqaresourceiac",
+        "table_name": "resource_iac_tool_qa",
+        "group_name": "iac-tool-qa-devops",
+        "group_region": "us-east-1",
+        "qs_namespace": "default"
+      }
+    },
+
+    "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
+    "@aws-cdk/core:checkSecretUsage": true,
+    "@aws-cdk/core:target-partitions": [
+      "aws",
+      "aws-cn"
+    ],
+    "@aws-cdk-containers/ecs-service-extensions:enableDefaultLogDriver": true,
+    "@aws-cdk/aws-ec2:uniqueImdsv2TemplateName": true,
+    "@aws-cdk/aws-ecs:arnFormatIncludesClusterName": true,
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:validateSnapshotRemovalPolicy": true,
+    "@aws-cdk/aws-codepipeline:crossAccountKeyAliasStackSafeResourceName": true,
+    "@aws-cdk/aws-s3:createDefaultLoggingPolicy": true,
+    "@aws-cdk/aws-sns-subscriptions:restrictSqsDescryption": true,
+    "@aws-cdk/aws-apigateway:disableCloudWatchRole": true,
+    "@aws-cdk/core:enablePartitionLiterals": true,
+    "@aws-cdk/aws-events:eventsTargetQueueSameAccount": true,
+    "@aws-cdk/aws-iam:standardizedServicePrincipals": true,
+    "@aws-cdk/aws-ecs:disableExplicitDeploymentControllerForCircuitBreaker": true
+  }
+}
