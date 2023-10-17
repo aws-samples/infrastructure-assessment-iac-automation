@@ -22,7 +22,7 @@ This Pattern demonstrate approach for setting up resources assessment capabiliti
 - [Amazon Athena](https://aws.amazon.com/athena/)
 - [AWS Glue Crawler](https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html)
 - [AWS Glue Catalog](https://docs.aws.amazon.com/glue/latest/dg/catalog-and-crawler.html)
-- [Amazon Quicksight](https://aws.amazon.com/quicksight/)
+- [Amazon QuickSight](https://aws.amazon.com/quicksight/)
 
 # Target Architecture
 The AWS CDK code will deploy all the resources in order to setup resource assessment capabilities in AWS account.
@@ -111,23 +111,23 @@ Deploy Resources in AWS Account using CDK.
      - From the left pane select `Crawlers` under `Data Catalog` section.
      - Select crawler with name `iac-tool-qa-resource-iac-json-crawler`.
      - Run the crawler and wait for its execution.
-     - After successful execution, it will create a glue catalog table which will be used by AWS Quicksight to visualize the data.
+     - After successful execution, it will create a glue catalog table which will be used by AWS QuickSight to visualize the data.
 
-4. Deploy Quicksight construct -
+4. Deploy QuickSight construct -
 *Note: Step#3 must be executed before proceeding for this step.*
-Uncomment the code present between comments `#Quicksight setup - start` and `#Quicksight setup - ends`(which creates `Quicksight DataSource` and `Quicksight DataSet` in quicksight account) in [resource_iac_tool_stack.py](./lib/resource_iac_tool_stack.py). After uncommenting it execute below command for deploying changes.
+Uncomment the code present between comments `#QuickSight setup - start` and `#QuickSight setup - ends`(which creates `QuickSight DataSource` and `QuickSight DataSet` in quicksight account) in [resource_iac_tool_stack.py](./lib/resource_iac_tool_stack.py). After uncommenting it execute below command for deploying changes.
     ```bash
     cdk deploy
     ```
-5. To create AWS Quicksight dashboard follow below steps:
+5. To create AWS QuickSight dashboard follow below steps:
 
-    *Note: [AWS Quicksight](https://aws.amazon.com/quicksight) is a paid service, please go through [AWS Quicksight pricing](https://aws.amazon.com/quicksight/pricing/) before creating analysis and dashboard.*
+    *Note: [AWS QuickSight](https://aws.amazon.com/quicksight) is a paid service, please go through [AWS QuickSight pricing](https://aws.amazon.com/quicksight/pricing/) before creating analysis and dashboard.*
 
     Refer this [page](https://docs.aws.amazon.com/quicksight/latest/user/creating-an-analysis.html) to get understand about AWS QuickSight analysis creation.
 
     To create a sample analysis for this solution please follow steps:
     - Go to AWS QuickSight [console](quicksight.aws.amazon.com) and [select region](https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html) where resources are deployed.
-    - From the left pane select `Datasets` and validate if dataset named `ct-operations-iac-ds` has been created in AWS Quicksight dataset. If not then please re-visit [Step 4](#configure-and-deploy-the-resource-assessment-tool#4).
+    - From the left pane select `Datasets` and validate if dataset named `ct-operations-iac-ds` has been created in AWS QuickSight dataset. If not then please re-visit [Step 4](#configure-and-deploy-the-resource-assessment-tool#4).
     - Select dataset `ct-operations-iac-ds` and click on `USE IN ANALYSIS`.
     - Select the sheet with default setting.
     - select the respective columns from the field list on left side.
