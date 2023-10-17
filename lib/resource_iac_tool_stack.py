@@ -70,7 +70,7 @@ class ResourceIaCStack(Stack):
 
         glue_db = glueConstructs.Glue_DB(self, 'Resource-iac-glue-db', identifier='ct', output_s3_bucket_folder_arn=output_s3_bucket_folder_arn, output_s3_bucket_path=output_s3_bucket_path)
 
-        #Quicksight setup - start
+        #QuickSight setup - start
         #quicksight_athena = quickSightConstruct.QuickSight(self, 'operations-iac-qs-athena', identifier='ct')
         #quicksight_athena.node.add_dependency(glue_db)
-        #Quicksight setup - ends
+        #QuickSight setup - ends
