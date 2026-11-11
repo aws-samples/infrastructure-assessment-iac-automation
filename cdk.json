@@ -17,10 +17,10 @@
   "context": {
     "s3_context": {
       "ct": {
-        "name": "cdk-iac-tool-qa-ct-events"
+        "name": "iac-tool-qa-ct-events"
       },
       "output": {
-        "name": "cdk-iac-tool-qa-filter-data"
+        "name": "iac-tool-qa-filter-data"
       }
     },
     "ct_context": {

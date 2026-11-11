@@ -35,6 +35,7 @@ class ResourceIaCStack(Stack):
 
         ### Creating Lambda Function ##
         lambda_function = lambdaConstructs.lm_func(self, 'lambda-to-process-ct-logs', identifier='ct')
+        lambda_function.lam_func.add_environment("OUTPUT_S3_BUCKET", output_s3_bucket.s3_bucket.bucket_name)
 
         ### Adding S3 event Trigger to Lambda Function ##
         lambda_function.lam_func.add_event_source(lm_event_source.S3EventSource(bucket=trail_s3_bucket.s3_bucket, events=[s3.EventType.OBJECT_CREATED],filters=[s3.NotificationKeyFilter(prefix=f"AWSLogs/{cdk.Aws.ACCOUNT_ID}/CloudTrail/")]))
